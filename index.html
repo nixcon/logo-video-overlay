@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nixcon animation</title>
+        <script type="text/javascript">
+
+         document.addEventListener('DOMContentLoaded', () => {
+             const minuteElem = document.getElementById('minute')
+             const hourElem = document.getElementById('hour')
+
+             function rotateElem(elem, clock, offset) {
+                 if (offset === undefined) {
+                     offset = 0
+                 }
+                 let deg = (360/60) * (clock - offset)
+                 console.log(deg)
+                 elem.style = 'transform: rotate(' + deg + 'deg)';
+             }
+
+             let lastMinute
+             let lastHour
+
+             setInterval(() => {
+                 const d = new Date()
+                 const minute = d.getUTCMinutes()
+                 const hour = d.getUTCHours() + 1 // London is UTC+1
+
+                 if (minute != lastMinute) {
+                     rotateElem(minuteElem, minute)
+                     lastMinute = minute
+                 }
+                 if (hour != lastHour) {
+                     rotateElem(hourElem, hour, 20.85)
+                     lastHour = hour
+                 }
+             }, 110)
+         }, false)
+
+        </script>
+
+
+        <style>
+         img {
+             position: absolute;
+             left: 0;
+             top: 0;
+             float: left;
+         }
+
+         img {
+             transition: all 0.1s ease-in-out;
+         }
+        </style>
+
+    </head>
+    <body>
+        <!--  <img id="logo" height="200" src="./nixcon2018-nohands.svg" />  -->
+        <img id="hour" height="200" src="./nixcon2018-separate-hand-hour.svg" />
+        <img id="minute" height="200" src="./nixcon2018-separate-hand-minute.svg" />
+    </body>
+</html>
