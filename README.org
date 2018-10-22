@@ -1,0 +1,12 @@
+* Nixcon dynamic video overlay
+
+** Installing OBS & plugins with home-manager:
+#+begin_src nix
+  programs.obs-studio = {
+    plugins = [ pkgs.obs-linuxbrowser ];
+    enable = true;
+  };
+#+end_src
+
+** Notes
+Note: OBS exports with absolute paths, modify paths to source directory before importing into OBS
